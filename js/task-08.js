@@ -9,13 +9,14 @@ function onFormSend(event) {
   formData.forEach((value, name) => {
     data[name] = value;
   });
-  console.log("Form Data:", data);
+
   const FormElements = event.currentTarget.elements;
-  const email = FormElements.email.value;
-  const password = FormElements.password.value;
+  const email = FormElements.email.value.trim();
+  const password = FormElements.password.value.trim();
   if (email === "" || password === "") {
     alert(`Всі поля повинні бути заповнені!`);
   } else {
+    console.log(data);
     event.currentTarget.reset();
   }
 }
