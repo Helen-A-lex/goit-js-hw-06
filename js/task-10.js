@@ -4,23 +4,66 @@ function getRandomHexColor() {
     .padStart(6, 0)}`;
 }
 
+// const divEl = document.querySelector("#controls");
+
+// const input = divEl.firstElementChild;
+// input.addEventListener("click", onInput);
+// function onInput(evt) {
+//   console.log(evt.currentTarget.value);
+// }
+// const buttonCreate = divEl.children[1];
+// console.log(buttonCreate);
+// buttonCreate.addEventListener("click", createBoxes);
+// const buttonDestroy = divEl.lastElementChild;
+// console.log(buttonDestroy);
+// buttonDestroy.addEventListener("click");
+// const divBoX = document.querySelector("#boxes", destroyBoxes);
+// console.log(divBoX);
+
+// function createBoxes(amount) {
+//   const randomColor = getRandomHexColor();
+//   const div = document.createElement("div");
+//   div.style.backgroundColor = randomColor;
+//   div.style.width = "30 px";
+//   div.style.height = "30px";
+
+//   console.log(div);
+// }
+// divBoX.appendChild(div);
+// function destroyBoxes() {}
+
 const divEl = document.querySelector("#controls");
-console.log(divEl);
-const input = divEl.firstElementChild;
-console.log(input);
+const input = divEl.querySelector("input");
+const buttonCreate = divEl.querySelector("[data-create]");
+const buttonDestroy = divEl.querySelector("[data-destroy]");
+// Можна звернутись і так
+// const input = document.querySelector("#controls input");
+// const buttonCreate = document.querySelector("#controls [data-create]");
+// const buttonDestroy = document.querySelector("#controls [data-destroy]");
 
-const buttonCreate = divEl.children[1];
-console.log(buttonCreate);
+const divBox = document.querySelector("#boxes");
 
-const buttonDestroy = divEl.lastElementChild;
-console.log(buttonDestroy);
+buttonCreate.addEventListener("click", createBoxes);
+buttonDestroy.addEventListener("click", destroyBoxes);
 
-const divBoX = document.querySelector("#boxes");
-console.log(divBoX);
+function createBoxes() {
+  const amount = input.value;
 
-function createBoxes(amount) {
-  const div = document.createElement("div");
-  div.style.divBoX.appendChild(div);
+  let size = 30;
+  for (let i = 0; i < amount; i += 1) {
+    const randomColor = getRandomHexColor();
+    const div = document.createElement("div");
+    div.style.backgroundColor = randomColor;
+    div.style.width = `${size}px`;
+    div.style.height = `${size}px`;
+    divBox.appendChild(div);
+    size += 10;
+  }
 }
 
-console.log(createBoxes(6));
+function destroyBoxes() {
+  // divBox.innerHTML = "";
+  while (divBox.firstChild) {
+    divBox.removeChild(divBox.firstChild);
+  }
+}
